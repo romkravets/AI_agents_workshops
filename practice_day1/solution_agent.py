@@ -12,7 +12,7 @@ from langgraph.graph import START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
 
-from config import LLM_MODEL
+from config import LLM_API_KEY, LLM_BASE_URL, LLM_MODEL
 from solution_tools import all_tools
 
 load_dotenv()
@@ -27,7 +27,7 @@ class State(TypedDict):
 
 
 # Step 3: LLM + chatbot node
-llm = ChatOpenAI(model=LLM_MODEL)
+llm = ChatOpenAI(model=LLM_MODEL, base_url=LLM_BASE_URL, api_key=LLM_API_KEY)
 llm_with_tools = llm.bind_tools(all_tools)
 
 
